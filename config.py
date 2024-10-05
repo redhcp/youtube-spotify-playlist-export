@@ -1,0 +1,14 @@
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+YOUTUBE_API_KEY = os.getenv('YOUTUBE_API_KEY')
+YOUTUBE_PLAYLIST_ID = os.getenv('YOUTUBE_PLAYLIST_ID')
+
+SPOTIFY_CLIENT_ID = os.getenv('SPOTIFY_CLIENT_ID')
+SPOTIFY_CLIENT_SECRET = os.getenv('SPOTIFY_CLIENT_SECRET')
+SPOTIFY_USER_ID = os.getenv('SPOTIFY_USER_ID')
+SPOTIFY_PLAYLIST_ID =os.getenv('SPOTIFY_PLAYLIST_ID')
+SPOTIFY_TOKEN_URL = os.getenv('SPOTIFY_TOKEN_URL')
+
