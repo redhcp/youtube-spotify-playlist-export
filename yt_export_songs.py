@@ -1,7 +1,12 @@
 import requests
 import csv
-from config import YOUTUBE_API_KEY, YOUTUBE_PLAYLIST_ID
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
+
+YOUTUBE_API_KEY =os.getenv("YOUTUBE_API_KEY")
+YOUTUBE_PLAYLIST_ID =os.getenv("YOUTUBE_PLAYLIST_ID")
 YOUTUBE_API_URL = 'https://www.googleapis.com/youtube/v3/playlistItems'
 
 def get_youtube_playlist(api_key, playlist_id):

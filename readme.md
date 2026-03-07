@@ -1,75 +1,39 @@
-## Playlist Exporter
+# Spotify & YouTube Export
 
-This repository contains a Python script designed to export playlist titles and song URLs to a CSV file.
+Small Python tools to export Spotify playlists/liked songs and YouTube playlists to CSV.
 
-## Features
+## Setup
 
-- Extracts titles and corresponding song URLs.
-- Outputs the data into a structured CSV format for easy access.
-- Separate scripts for exporting from Spotify (`spotify-exp.py`) and YouTube (`youtube-exp.py`).
+1. **Clone and install dependencies**
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+2. **Environment variables**
+
+   Copy `env_example` to `.env` and fill in your keys:
+
+   - **Spotify** (for liked songs and playlists): create an app at [Spotify Developer Dashboard](https://developer.spotify.com/dashboard), then set `SPOTIFY_CLIENT_ID`, `SPOTIFY_CLIENT_SECRET`, and `SPOTIFY_REDIRECT_URI` (e.g. `http://127.0.0.1:8888/callback`).
+   - **Spotify playlist only**: set `SPOTIFY_PLAYLIST_ID` to the playlist ID from the playlist URL.
+   - **YouTube**: get an API key from [Google Cloud Console](https://console.cloud.google.com/) (YouTube Data API v3), then set `YOUTUBE_API_KEY` and `YOUTUBE_PLAYLIST_ID`.
 
 ## Usage
 
-1. Clone the repository:
+| Script                         | Description                                                      | Output                    |
+| ------------------------------ | ---------------------------------------------------------------- | ------------------------- |
+| `spo_export_like_songs.py`     | Export your Spotify **Liked Songs** (browser login on first run) | `spotify_liked_songs.csv` |
+| `spo_export_playlist_songs.py` | Export a **Spotify playlist** by ID                              | `spotify_playlist.csv`    |
+| `yt_export_songs.py`           | Export a **YouTube playlist** by ID                              | `youtube_playlist.csv`    |
 
-   ```bash
-   git clone https://github.com/redhcp/youtube-spotify-playlist-export.git
-   ```
-
-2. Navigate to the project directory:
-
-   ```bash
-   cd youtube-spotify-playlist-export
-   ```
-
-3. Complete `.env` file with the necessary credentials.
-
-   - [Spotify Documentation](https://developer.spotify.com/documentation/web-api/concepts/apps/)
-   - [Google Documentation](https://cloud.google.com/docs/authentication/api-keys) & [Console.Cloud.Google](https://console.cloud.google.com/apis/credentials)
-
-4. #### Make sure you have the following installed:
-
-- Python 3.x
-
-- Create a virtual environment:
-
-  `python -m venv venv`
-
-- Activate the virtual environment:
-
-  `.\venv\Scripts\activate`
-
-- Install only the required libraries for your project:
-
-  ```
-  pip install requests
-  pip install python-dotenv
-  ```
-
-- Freeze only necessary packages:
-
-  ` pip freeze > requirements.txt`
-
-- Required libraries (can be installed via `requirements.txt`):
-  ```bash
-  pip install -r requirements.txt
-  ```
-
-5. Run the Python script:
+Run any script with:
 
 ```bash
-  python .\spotify-exp.py
+python spo_export_like_songs.py
+python spo_export_playlist_songs.py
+python yt_export_songs.py
 ```
 
-OR
+## License
 
-```bash
-  python .\youtube-exp.py
-```
-
-## Notes
-
-The script will generate a CSV file containing the playlist details in root dir.
-
-- `spotify_playlist.csv`
-- `youtube_playlist.csv`
+MIT
